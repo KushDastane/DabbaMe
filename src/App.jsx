@@ -21,8 +21,6 @@ import {
   X,
 } from "lucide-react";
 
-const logo = "/src/assets/logo.webp";
-
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
@@ -83,25 +81,25 @@ const featureList = [
 const customerScreens = [
   {
     title: "Home Discovery",
-    image: "/src/assets/mockups/customer-home.jpg",
+    image: "/assets/mockups/customer-home.jpg",
     badge: "Customer",
     feature: "Browse nearby kitchens",
   },
   {
     title: "Kitchen Profile",
-    image: "/src/assets/mockups/customer-kitchen.jpg",
+    image: "/assets/mockups/customer-kitchen.jpg",
     badge: "Customer",
     feature: "View menus and ratings",
   },
   {
     title: "Order Meal",
-    image: "/src/assets/mockups/customer-subscription.jpg",
+    image: "/assets/mockups/customer-subscription.jpg",
     badge: "Customer",
     feature: "Place orders in seconds",
   },
   {
     title: "Checkout",
-    image: "/src/assets/mockups/customer-history.jpg",
+    image: "/assets/mockups/customer-history.jpg",
     badge: "Customer",
     feature: "Place orders in seconds",
   },
@@ -110,25 +108,25 @@ const customerScreens = [
 const kitchenScreens = [
   {
     title: "Kitchen Dashboard",
-    image: "/src/assets/mockups/kitchen-dashboard.jpg",
+    image: "/assets/mockups/kitchen-dashboard.jpg",
     badge: "Kitchen",
     feature: "Manage daily orders",
   },
   {
     title: "Menu Manager",
-    image: "/src/assets/mockups/kitchen-menu.jpg",
+    image: "/assets/mockups/kitchen-menu.jpg",
     badge: "Kitchen",
     feature: "Update meals and pricing",
   },
   {
     title: "Orders",
-    image: "/src/assets/mockups/kitchen-orders.jpg",
+    image: "/assets/mockups/kitchen-orders.jpg",
     badge: "Kitchen",
     feature: "Track regular orders",
   },
   {
     title: "Customers",
-    image: "/src/assets/mockups/kitchen-customers.jpg",
+    image: "/assets/mockups/kitchen-customers.jpg",
     badge: "Kitchen",
     feature: "Track your Customers",
   },
@@ -194,6 +192,7 @@ const fadeInUp = {
 const EMAILJS_SERVICE_ID = "service_pjr74br";
 const EMAILJS_TEMPLATE_ID = "template_t4ufbsh";
 const EMAILJS_PUBLIC_KEY = "xFLspg7cIcxfDEKsJ";
+const logo = "/assets/logo.webp";
 
 function SectionWrapper({
   id,
@@ -260,6 +259,7 @@ function OptimizedImage({
   fetchPriority = "auto",
   sizes,
   decoding = "async",
+  blur = true,
 }) {
   const [loaded, setLoaded] = useState(false);
   const image = (
@@ -271,7 +271,7 @@ function OptimizedImage({
       decoding={decoding}
       sizes={sizes}
       onLoad={() => setLoaded(true)}
-      className={`image-blur-transition image-blur-up ${loaded ? "is-loaded" : ""} ${className}`}
+      className={`${blur ? `image-blur-transition image-blur-up ${loaded ? "is-loaded" : ""}` : ""} ${className}`}
     />
   );
 
@@ -292,6 +292,7 @@ function MockupCard({ title, badge, image, feature, className = "" }) {
             <OptimizedImage
               src={image}
               alt={title}
+              blur={false}
               sizes="(max-width: 768px) 220px, 220px"
               className="h-[420px] w-full rounded-[24px] object-cover transition-transform duration-500 group-hover:scale-105"
             />
@@ -727,6 +728,7 @@ function App() {
                 alt="DabbaMe logo"
                 loading="eager"
                 fetchPriority="high"
+                blur={false}
                 sizes="144px"
                 className="h-9 w-auto object-contain"
               />
@@ -1316,6 +1318,7 @@ function App() {
               <OptimizedImage
                 src={logo}
                 alt="DabbaMe logo"
+                blur={false}
                 sizes="144px"
                 className="h-9 w-auto object-contain"
               />
