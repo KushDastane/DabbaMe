@@ -843,7 +843,7 @@ function App() {
                 Trusted local kitchens
               </span>
               <h1 className="mt-6 text-5xl font-extrabold leading-[0.98] tracking-tight text-stone-950 sm:text-6xl lg:text-7xl">
-                Homemade Food, Delivered with Trust
+                Homemade Food, Just a Tap away!
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600 sm:text-xl">
                 Connecting home kitchens with hungry customers nearby through a
