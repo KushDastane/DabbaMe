@@ -975,39 +975,55 @@ function App() {
               <motion.div
                 animate={{ y: [0, -10, 0], rotate: [-4, 0, -4] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute left-2 top-0 z-30 hidden rounded-full border border-yellow-200 bg-white/95 px-4 py-2 text-sm font-semibold text-stone-700 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:flex"
+                className="absolute left-1 top-2 z-30 flex max-w-[160px] items-center rounded-full border border-yellow-200 bg-white/95 px-3 py-1.5 text-[11px] font-semibold text-stone-700 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:left-2 sm:top-0 sm:max-w-none sm:px-4 sm:py-2 sm:text-sm"
               >
-                <span className="mr-2">💛</span>
+                <span
+                  className="mr-1.5 text-sm sm:mr-2 sm:text-base"
+                  role="img"
+                  aria-label="yellow heart"
+                >
+                  &#128155;
+                </span>
                 Loved by users
               </motion.div>
               <motion.div
                 animate={{ y: [0, 12, 0], rotate: [6, 0, 6] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute right-4 -top-4 z-20 hidden rounded-full border border-yellow-200 bg-yellow-100/95 px-4 py-2 text-sm font-semibold text-stone-800 shadow-[0_18px_50px_rgba(255,215,0,0.18)] backdrop-blur sm:flex"
+                className="absolute right-2 -top-3 z-20 flex max-w-[160px] items-center rounded-full border border-yellow-200 bg-yellow-100/95 px-3 py-1.5 text-[11px] font-semibold text-stone-800 shadow-[0_18px_50px_rgba(255,215,0,0.18)] backdrop-blur sm:right-4 sm:-top-4 sm:max-w-none sm:px-4 sm:py-2 sm:text-sm"
               >
-                <span className="mr-2">⭐</span>
+                <span
+                  className="mr-1.5 text-sm sm:mr-2 sm:text-base"
+                  role="img"
+                  aria-label="star"
+                >
+                  &#11088;
+                </span>
                 Trusted kitchens
               </motion.div>
               <motion.div
                 animate={{ y: [0, -8, 0], x: [0, 4, 0] }}
                 transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute left-14 top-16 z-30 hidden h-14 w-14 items-center justify-center rounded-full border border-white/80 bg-white/95 text-2xl shadow-[0_18px_50px_rgba(17,17,17,0.10)] backdrop-blur md:flex"
+                className="absolute left-4 top-18 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/80 bg-white/95 text-xl shadow-[0_18px_50px_rgba(17,17,17,0.10)] backdrop-blur sm:left-8 sm:top-16 sm:h-12 sm:w-12 sm:text-2xl md:left-14 md:h-14 md:w-14"
               >
-                😍
+                <span role="img" aria-label="smiling face with heart eyes">
+                  &#128525;
+                </span>
               </motion.div>
               <motion.div
                 animate={{ y: [0, 10, 0], x: [0, -6, 0] }}
                 transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute right-10 top-40 z-30 hidden h-16 w-16 items-center justify-center rounded-full border border-yellow-200 bg-yellow-50/95 text-2xl shadow-[0_18px_50px_rgba(255,215,0,0.18)] backdrop-blur md:flex"
+                className="absolute right-4 top-36 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-yellow-200 bg-yellow-50/95 text-xl shadow-[0_18px_50px_rgba(255,215,0,0.18)] backdrop-blur sm:right-6 sm:top-38 sm:h-14 sm:w-14 sm:text-2xl md:right-10 md:top-40 md:h-16 md:w-16"
               >
-                🫶
+                <span role="img" aria-label="heart hands">
+                  &#129505;
+                </span>
               </motion.div>
               <div className="absolute inset-0 -z-10">
                 <div className="absolute left-10 top-8 h-28 w-28 rounded-full bg-yellow-200/35 blur-2xl" />
                 <div className="absolute right-12 top-10 h-24 w-24 rounded-full bg-yellow-300/25 blur-2xl" />
                 <div className="absolute left-1/2 top-0 h-20 w-20 -translate-x-1/2 rounded-full bg-white/70 blur-xl" />
               </div>
-              <div className="absolute right-8 top-20 z-40 rounded-full border border-yellow-200 bg-white px-4 py-2 text-sm font-semibold text-stone-700 shadow-lg">
+              <div className="absolute right-3 top-24 z-40 max-w-[170px] rounded-full border border-yellow-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-stone-700 shadow-lg sm:right-8 sm:top-20 sm:max-w-none sm:px-4 sm:py-2 sm:text-sm">
                 Trusted by growing home chefs
               </div>
               <div className="relative z-20 mt-20 w-full max-w-[360px] rounded-[42px] border border-stone-300 bg-stone-950 p-3 shadow-[0_40px_120px_rgba(17,17,17,0.18)]">
