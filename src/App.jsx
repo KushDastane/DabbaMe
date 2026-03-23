@@ -508,7 +508,7 @@ function EnquiryModal({ open, onClose, enquiryType }) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[80] flex items-center justify-center bg-stone-950/65 px-4 py-8 backdrop-blur-sm"
+        className="fixed inset-0 z-[80] overflow-y-auto overscroll-contain bg-stone-950/65 px-3 py-4 backdrop-blur-sm sm:px-4 sm:py-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -520,9 +520,9 @@ function EnquiryModal({ open, onClose, enquiryType }) {
           exit={{ opacity: 0, y: 18, scale: 0.98 }}
           transition={{ duration: 0.24 }}
           onClick={(event) => event.stopPropagation()}
-          className="w-full max-w-2xl overflow-hidden rounded-[32px] border border-stone-200 bg-[#fffdf7] shadow-[0_32px_120px_rgba(17,17,17,0.22)]"
+          className="mx-auto my-auto flex max-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col overflow-hidden rounded-[28px] border border-stone-200 bg-[#fffdf7] shadow-[0_32px_120px_rgba(17,17,17,0.22)] sm:max-h-[calc(100dvh-4rem)] sm:rounded-[32px]"
         >
-          <div className="flex items-start justify-between gap-4 border-b border-stone-200 px-6 py-6 sm:px-8">
+          <div className="flex shrink-0 items-start justify-between gap-4 border-b border-stone-200 px-5 py-5 sm:px-8 sm:py-6">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-stone-500">
                 Enquiries
@@ -545,7 +545,7 @@ function EnquiryModal({ open, onClose, enquiryType }) {
             </button>
           </div>
 
-          <div className="px-6 py-6 sm:px-8 sm:py-8">
+          <div className="min-h-0 overflow-y-auto px-5 py-5 sm:px-8 sm:py-8">
             {submitted ? (
               <div className="rounded-[24px] border border-yellow-200 bg-yellow-100/70 p-6">
                 <h4 className="text-2xl font-bold text-stone-950">
@@ -708,9 +708,54 @@ function App() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [enquiryType, setEnquiryType] = useState("contact");
 
+  useEffect(() => {
+    if (!enquiryOpen) return undefined;
+
+    const { body } = document;
+    const previousOverflow = body.style.overflow;
+    const previousTouchAction = body.style.touchAction;
+
+    body.style.overflow = "hidden";
+    body.style.touchAction = "none";
+
+    return () => {
+      body.style.overflow = previousOverflow;
+      body.style.touchAction = previousTouchAction;
+    };
+  }, [enquiryOpen]);
+
+  useEffect(() => {
+    if (!enquiryOpen) return undefined;
+
+    const handlePopState = () => {
+      setEnquiryOpen(false);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [enquiryOpen]);
+
   const openEnquiry = (type = "contact") => {
     setEnquiryType(type);
+    if (!window.history.state?.enquiryModal) {
+      window.history.pushState(
+        { ...(window.history.state ?? {}), enquiryModal: true },
+        ""
+      );
+    }
     setEnquiryOpen(true);
+  };
+
+  const closeEnquiry = () => {
+    if (window.history.state?.enquiryModal) {
+      window.history.back();
+      return;
+    }
+
+    setEnquiryOpen(false);
   };
 
   return (
@@ -1373,7 +1418,7 @@ function App() {
 
       <EnquiryModal
         open={enquiryOpen}
-        onClose={() => setEnquiryOpen(false)}
+        onClose={closeEnquiry}
         enquiryType={enquiryType}
       />
     </div>
