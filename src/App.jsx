@@ -292,7 +292,6 @@ function MockupCard({ title, badge, image, feature, className = "" }) {
             <OptimizedImage
               src={image}
               alt={title}
-              blur={false}
               sizes="(max-width: 768px) 220px, 220px"
               className="h-[420px] w-full rounded-[24px] object-cover transition-transform duration-500 group-hover:scale-105"
             />
