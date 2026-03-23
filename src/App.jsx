@@ -840,13 +840,13 @@ function App() {
             </div>
 
             <div className="hidden md:block">
-              <button
-                type="button"
-                onClick={() => openEnquiry("demo")}
+              <a
+                href="#contact"
+                onClick={(event) => handleNavLinkClick(event, "#contact")}
                 className="inline-flex items-center rounded-full bg-yellow-300 px-5 py-3 text-sm font-semibold text-stone-950 transition hover:bg-yellow-400"
               >
                 Get App
-              </button>
+              </a>
             </div>
 
             <button
