@@ -708,6 +708,29 @@ function App() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [enquiryType, setEnquiryType] = useState("contact");
 
+  const scrollToSection = (targetId) => {
+    const section = document.getElementById(targetId);
+    if (!section) return;
+
+    const header = document.querySelector("header");
+    const headerOffset = header ? header.getBoundingClientRect().height + 12 : 88;
+    const top =
+      section.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.scrollTo({
+      top: Math.max(top, 0),
+      behavior: "smooth",
+    });
+  };
+
+  const handleNavLinkClick = (event, href) => {
+    const targetId = href.replace("#", "");
+
+    event.preventDefault();
+    setMobileMenuOpen(false);
+    scrollToSection(targetId);
+  };
+
   useEffect(() => {
     if (!enquiryOpen) return undefined;
 
@@ -850,23 +873,20 @@ function App() {
                       <a
                         key={link.label}
                         href={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={(event) => handleNavLinkClick(event, link.href)}
                         className="text-sm font-medium text-stone-700"
                       >
                         {link.label}
                       </a>
                     )
                   ))}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      openEnquiry("demo");
-                    }}
+                  <a
+                    href="#contact"
+                    onClick={(event) => handleNavLinkClick(event, "#contact")}
                     className="inline-flex w-fit items-center rounded-full bg-yellow-300 px-5 py-3 text-sm font-semibold text-stone-950"
                   >
                     Get App
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             )}
@@ -885,7 +905,7 @@ function App() {
               className="max-w-2xl"
             >
               <span className="inline-flex rounded-full border border-yellow-200 bg-yellow-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-stone-700">
-                Trusted local kitchens
+                Trusted Home Tiffins
               </span>
               <h1 className="mt-6 text-5xl font-extrabold leading-[0.98] tracking-tight text-stone-950 sm:text-6xl lg:text-7xl">
                 Homemade Food, Just a Tap away!
