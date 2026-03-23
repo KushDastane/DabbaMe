@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "Manrope", sans-serif;
+  color: #111111;
+  background:
+    radial-gradient(circle at top left, rgba(255, 215, 0, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 215, 0, 0.12), transparent 22%),
+    #fffdf7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+.image-blur-up {
+  transform: scale(1.02);
+  filter: blur(14px);
+  opacity: 0.72;
+}
+
+.image-blur-up.is-loaded {
+  transform: scale(1);
+  filter: blur(0);
+  opacity: 1;
+}
+
+.image-blur-transition {
+  transition:
+    filter 500ms ease,
+    opacity 500ms ease,
+    transform 600ms ease;
+  will-change: filter, opacity, transform;
+}
+
+::selection {
+  background: rgba(255, 215, 0, 0.85);
+  color: #111111;
+}
+
+::-moz-selection {
+  background: rgba(255, 215, 0, 0.85);
+  color: #111111;
+}
