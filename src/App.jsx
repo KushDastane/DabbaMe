@@ -707,6 +707,7 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [enquiryType, setEnquiryType] = useState("contact");
+  const [pendingSectionId, setPendingSectionId] = useState(null);
 
   const scrollToSection = (targetId) => {
     const section = document.getElementById(targetId);
@@ -727,8 +728,8 @@ function App() {
     const targetId = href.replace("#", "");
 
     event.preventDefault();
+    setPendingSectionId(targetId);
     setMobileMenuOpen(false);
-    scrollToSection(targetId);
   };
 
   useEffect(() => {
@@ -746,6 +747,17 @@ function App() {
       body.style.touchAction = previousTouchAction;
     };
   }, [enquiryOpen]);
+
+  useEffect(() => {
+    if (mobileMenuOpen || !pendingSectionId) return undefined;
+
+    const frame = window.requestAnimationFrame(() => {
+      scrollToSection(pendingSectionId);
+      setPendingSectionId(null);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [mobileMenuOpen, pendingSectionId]);
 
   useEffect(() => {
     if (!enquiryOpen) return undefined;
